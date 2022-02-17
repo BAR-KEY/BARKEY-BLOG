@@ -1,54 +1,73 @@
 import 'package:barkey_blog/config/palette.dart';
+import 'package:barkey_blog/pages/content.dart';
+import 'package:barkey_blog/pages/content_add.dart';
 import 'package:flutter/material.dart';
 // import 'package:barkey_blog/config/palette.dart';
 import '/config/style.dart' as style;
+import 'package:get/get.dart';
 
 void main() {
-  runApp(MaterialApp(
-      title: 'BARKEY BLOG', home: const MyApp(), theme: style.theme));
+  runApp(
+      GetMaterialApp(title: 'BARKEY BLOG', home: MyApp(), theme: style.theme));
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+  var data = [
+    {
+      "title": "안녕하세요",
+      "text":
+          "첫번재 글입니다. 첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다.첫번재 글입니다."
+    },
+    {
+      "title": "두번째 글",
+      "text":
+          "두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다두번째글입니다2dkdidjdjifjdksajfkld아야어열아넘라ㅣ;ㅇㅁ너ㅏㅣㄹ어나ㅣㅁ렁나ㅣ머라ㅣ언마ㅣ런ㅇ마ㅣ러아ㅣ멀아ㅣㄴ"
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('BARKEY BLOG'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(const ContentAdd());
+              },
+              icon: const Icon(Icons.add))
+        ],
       ),
       drawer: Drawer(
           child: SingleChildScrollView(
         child: Column(children: const [Text('hi'), Text('hi'), Text('hi')]),
       )),
-      body: SingleChildScrollView(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 5,
-              ),
-              Content(
-                title: '제목으로 쓸것이고 글 길이가 길면 어떻게 될까',
-                text:
-                    '맛보기로 글의 앞부분이 노출될것입니다. 이거는 3줄로 설정했는데 3줄이면 내말을 다 담을 수 있을까 가능할까? 더 써도 되겠는데 될때까지 해보자 한줄만더 ㅋㅋ',
-              ),
-              Content(title: "f", text: "두줄 정도 적히면ㅇ ㅓ덯게 될까 실험중입니다 믓지게봐주세여 "),
-              Content(title: "f", text: "두줄 정도 적히면ㅇ ㅓ덯게 될까 실험중입니다 믓지게봐주세여 "),
-              Content(title: "f", text: "두줄 정도 적히면ㅇ ㅓ덯게 될까 실험중입니다 믓지게봐주세여 "),
-              Content(title: "f", text: "두줄 정도 적히면ㅇ ㅓ덯게 될까 실험중입니다 믓지게봐주세여 "),
-              Content(title: "f", text: "두줄 정도 적히면ㅇ ㅓ덯게 될까 실험중입니다 믓지게봐주세여 "),
-            ]),
+      body: ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (BuildContext c, int i) {
+          return GestureDetector(
+            onTap: () {
+              Get.to(Content(
+                title: data[i]['title'] ?? '제목 없음',
+                text: data[i]['text'] ?? '내용 없음',
+              ));
+            },
+            child: _Content(
+              title: data[i]['title'] ?? '제목 없음',
+              text: data[i]['text'] ?? '내용 없음',
+            ),
+          );
+        },
       ),
     );
   }
 }
 
 // ignore: must_be_immutable
-class Content extends StatelessWidget {
-  Content({Key? key, required this.title, required this.text})
+class _Content extends StatelessWidget {
+  _Content({Key? key, required this.title, required this.text})
       : super(key: key);
 
   String title, text;
@@ -69,9 +88,6 @@ class Content extends StatelessWidget {
         ),
       ),
       child: Row(children: [
-        Image.network(
-          'https://picsum.photos/id/421/100/100',
-        ),
         const SizedBox(
           width: 10,
         ),
