@@ -17,8 +17,30 @@ class ContentAdd extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                updateData();
-                Navigator.pop(context);
+                showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text(
+                          '게시물을 등록 하시겠습니까?',
+                        ),
+                        content: const Text("게시물이 등록 됩니다."),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text('취소')),
+                          TextButton(
+                              onPressed: () {
+                                updateData();
+                                Navigator.pop(context);
+                              },
+                              child: const Text('등록')),
+                        ],
+                      );
+                    });
               },
               icon: const Icon(Icons.check_rounded))
         ],

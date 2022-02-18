@@ -76,9 +76,79 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
       drawer: Drawer(
-          child: SingleChildScrollView(
-        child: Column(children: const [Text('hi'), Text('hi'), Text('hi')]),
-      )),
+        backgroundColor: Palette.mainColor,
+        child: ListTileTheme(
+          textColor: Palette.mainTextColor,
+          tileColor: Palette.subTextColor,
+          child: ListView(
+            children: [
+              UserAccountsDrawerHeader(
+                currentAccountPicture: const CircleAvatar(
+                  backgroundImage:
+                      NetworkImage('https://via.placeholder.com/40'),
+                ),
+                accountEmail: const Text('사용자 계정'),
+                accountName: const Text(' 사용자 이름'),
+                onDetailsPressed: () {
+                  // ignore: avoid_print
+                  print('press details');
+                },
+                decoration: const BoxDecoration(
+                    color: Palette.subColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    )),
+              ),
+              const ListTile(
+                title: Text('태그 1'),
+              ),
+              const ListTile(
+                title: Text('태그 2'),
+              ),
+              const ListTile(
+                title: Text('태그 3'),
+              ),
+              const ListTile(
+                title: Text('태그 4'),
+              ),
+              const ListTile(
+                title: Text('태그 5'),
+              ),
+              const ListTile(
+                title: Text('태그 6'),
+              ),
+              const ListTile(
+                title: Text('태그 7'),
+              ),
+              const ListTile(
+                title: Text('태그 8'),
+              ),
+              const ListTile(
+                title: Text('태그 9'),
+              ),
+              const ListTile(
+                title: Text('태그 10'),
+              ),
+              const ListTile(
+                title: Text('태그 11'),
+              ),
+              const ListTile(
+                title: Text('태그 12'),
+              ),
+              const ListTile(
+                title: Text('태그 13'),
+              ),
+              const ListTile(
+                title: Text('태그 14'),
+              ),
+              const ListTile(
+                title: Text('태그 15'),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: ListView.builder(
         itemCount: data.length,
         itemBuilder: (BuildContext c, int i) {
@@ -90,9 +160,31 @@ class _MyAppState extends State<MyApp> {
               ));
             },
             onLongPress: () {
-              setState(() {
-                data.removeAt(i);
-              });
+              showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text(
+                        '삭제 하시겠습니까?',
+                      ),
+                      content: const Text("게시물이 삭제 됩니다."),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('취소')),
+                        TextButton(
+                            onPressed: () {
+                              setState(() {
+                                data.removeAt(i);
+                              });
+                            },
+                            child: const Text('삭제')),
+                      ],
+                    );
+                  });
             },
             child: _Content(
               title: data[i]['title'] ?? '제목 없음',

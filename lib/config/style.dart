@@ -11,4 +11,8 @@ var theme = ThemeData(
       centerTitle: true),
   textTheme:
       const TextTheme(bodyText2: TextStyle(color: Palette.mainTextColor)),
+  dialogTheme: const DialogTheme(
+      backgroundColor: Palette.mainColor,
+      titleTextStyle: TextStyle(color: Palette.mainTextColor, fontSize: 17),
+      contentTextStyle: TextStyle(color: Palette.subTextColor, fontSize: 13)),
 );
