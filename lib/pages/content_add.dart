@@ -2,6 +2,7 @@
 
 import 'package:barkey_blog/config/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class ContentAdd extends StatelessWidget {
@@ -17,30 +18,23 @@ class ContentAdd extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text(
-                          '게시물을 등록 하시겠습니까?',
-                        ),
-                        content: const Text("게시물이 등록 됩니다."),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text('취소')),
-                          TextButton(
-                              onPressed: () {
-                                updateData();
-                                Navigator.pop(context);
-                              },
-                              child: const Text('등록')),
-                        ],
-                      );
-                    });
+                Get.defaultDialog(
+                  title: '게시물을 등록 하시겠습니까?',
+                  content: const Text("게시물이 등록 됩니다."),
+                  barrierDismissible: false,
+                  onCancel: () {
+                    Get.back();
+                  },
+                  textCancel: '취소',
+                  onConfirm: () {
+                    updateData();
+                  },
+                  textConfirm: '등록',
+                  backgroundColor: Palette.mainColor,
+                  buttonColor: Palette.subColor,
+                  cancelTextColor: Palette.mainTextColor,
+                  confirmTextColor: Palette.mainTextColor,
+                );
               },
               icon: const Icon(Icons.check_rounded))
         ],

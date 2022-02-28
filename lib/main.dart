@@ -160,31 +160,46 @@ class _MyAppState extends State<MyApp> {
               ));
             },
             onLongPress: () {
-              showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text(
-                        '삭제 하시겠습니까?',
-                      ),
-                      content: const Text("게시물이 삭제 됩니다."),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('취소')),
-                        TextButton(
-                            onPressed: () {
-                              setState(() {
-                                data.removeAt(i);
-                              });
-                            },
-                            child: const Text('삭제')),
-                      ],
-                    );
+              Get.defaultDialog(
+                title: '삭제 하시겠습니까?',
+                content: const Text("게시물이 삭제 됩니다."),
+                barrierDismissible: false,
+                onCancel: () {
+                  Get.back();
+                },
+                textCancel: '취소',
+                onConfirm: () {
+                  setState(() {
+                    data.removeAt(i);
                   });
+                },
+                textConfirm: '삭제',
+                backgroundColor: Palette.mainColor,
+                buttonColor: Palette.subColor,
+                cancelTextColor: Palette.mainTextColor,
+                confirmTextColor: Palette.mainTextColor,
+              );
+
+              // Get.dialog(AlertDialog(
+              //   title: const Text(
+              //     '삭제 하시겠습니까?',
+              //   ),
+              //   content: const Text("게시물이 삭제 됩니다."),
+              //   actions: [
+              //     TextButton(
+              //         onPressed: () {
+              //           Get.back();
+              //         },
+              //         child: const Text('취소')),
+              //     TextButton(
+              //         onPressed: () {
+              //           setState(() {
+              //             data.removeAt(i);
+              //           });
+              //         },
+              //         child: const Text('삭제')),
+              //   ],
+              // ));
             },
             child: _Content(
               title: data[i]['title'] ?? '제목 없음',
