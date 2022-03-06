@@ -35,14 +35,15 @@ class _MyAppState extends State<MyApp> {
   ];
   // ignore: prefer_typing_uninitialized_variables
   var updateTitle;
+  // ignore: prefer_typing_uninitialized_variables
+  var updateText;
+
   setTitle(title) {
     setState(() {
       updateTitle = title;
     });
   }
 
-  // ignore: prefer_typing_uninitialized_variables
-  var updateText;
   setText(text) {
     setState(() {
       updateText = text;
@@ -59,6 +60,14 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  editData() {
+    var editData = {
+      "title": updateTitle,
+      "text": updateText,
+    };
+  }
+  // 딱 말해줌 data 고유 index 번호에 접근한다음 기존 data 를 수정시켜주면 됨 그럼 끝.
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +76,7 @@ class _MyAppState extends State<MyApp> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(ContentAdd(
+                Get.to(() => ContentAdd(
                     setTitle: setTitle,
                     setText: setText,
                     updateData: updateData));
@@ -154,10 +163,13 @@ class _MyAppState extends State<MyApp> {
         itemBuilder: (BuildContext c, int i) {
           return GestureDetector(
             onTap: () {
-              Get.to(Content(
-                title: data[i]['title'] ?? '제목 없음',
-                text: data[i]['text'] ?? '내용 없음',
-              ));
+              Get.to(() => Content(
+                    title: data[i]['title'] ?? '제목 없음',
+                    text: data[i]['text'] ?? '내용 없음',
+                    setTitle: setTitle,
+                    setText: setText,
+                    editData: editData,
+                  ));
             },
             onLongPress: () {
               Get.defaultDialog(
@@ -171,6 +183,7 @@ class _MyAppState extends State<MyApp> {
                 onConfirm: () {
                   setState(() {
                     data.removeAt(i);
+                    Get.back();
                   });
                 },
                 textConfirm: '삭제',
@@ -179,27 +192,6 @@ class _MyAppState extends State<MyApp> {
                 cancelTextColor: Palette.mainTextColor,
                 confirmTextColor: Palette.mainTextColor,
               );
-
-              // Get.dialog(AlertDialog(
-              //   title: const Text(
-              //     '삭제 하시겠습니까?',
-              //   ),
-              //   content: const Text("게시물이 삭제 됩니다."),
-              //   actions: [
-              //     TextButton(
-              //         onPressed: () {
-              //           Get.back();
-              //         },
-              //         child: const Text('취소')),
-              //     TextButton(
-              //         onPressed: () {
-              //           setState(() {
-              //             data.removeAt(i);
-              //           });
-              //         },
-              //         child: const Text('삭제')),
-              //   ],
-              // ));
             },
             child: _Content(
               title: data[i]['title'] ?? '제목 없음',

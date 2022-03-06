@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:barkey_blog/config/palette.dart';
 
-var theme = ThemeData(
+final theme = ThemeData(
   backgroundColor: Palette.subColor,
   primaryColor: Palette.subColor,
   scaffoldBackgroundColor: Palette.mainColor,

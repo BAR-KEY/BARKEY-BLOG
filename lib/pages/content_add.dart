@@ -28,6 +28,8 @@ class ContentAdd extends StatelessWidget {
                   textCancel: '취소',
                   onConfirm: () {
                     updateData();
+                    Get.back();
+                    Get.back();
                   },
                   textConfirm: '등록',
                   backgroundColor: Palette.mainColor,
