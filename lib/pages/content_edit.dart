@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class ContentEdit extends StatelessWidget {
-  ContentEdit(
-      {Key? key,
-      required this.title,
-      required this.text,
-      this.editData,
-      this.setTitle,
-      this.setText})
-      : super(key: key);
+  ContentEdit({
+    Key? key,
+    required this.title,
+    required this.text,
+    this.editData,
+    this.setTitle,
+    this.setText,
+  }) : super(key: key);
 
   String title, text;
   // ignore: prefer_typing_uninitialized_variables
@@ -35,6 +35,7 @@ class ContentEdit extends StatelessWidget {
                   textCancel: '취소',
                   onConfirm: () {
                     editData();
+                    Get.back();
                     Get.back();
                     Get.back();
                   },

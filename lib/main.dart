@@ -60,14 +60,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  editData() {
-    var editData = {
-      "title": updateTitle,
-      "text": updateText,
-    };
-  }
-  // 딱 말해줌 data 고유 index 번호에 접근한다음 기존 data 를 수정시켜주면 됨 그럼 끝.
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,6 +153,17 @@ class _MyAppState extends State<MyApp> {
       body: ListView.builder(
         itemCount: data.length,
         itemBuilder: (BuildContext c, int i) {
+          editData() {
+            var editData = {
+              "title": updateTitle,
+              "text": updateText,
+            };
+            setState(() {
+              data.removeAt(i);
+              data.insert(i, editData);
+            });
+          }
+
           return GestureDetector(
             onTap: () {
               Get.to(() => Content(

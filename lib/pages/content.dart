@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class Content extends StatelessWidget {
-  Content(
-      {Key? key,
-      required this.title,
-      required this.text,
-      this.setTitle,
-      this.setText,
-      this.editData})
-      : super(key: key);
+  Content({
+    Key? key,
+    required this.title,
+    required this.text,
+    this.setTitle,
+    this.setText,
+    this.editData,
+  }) : super(key: key);
 
   String title, text;
   // ignore: prefer_typing_uninitialized_variables
