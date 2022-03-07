@@ -41,30 +41,35 @@ class ContentAdd extends StatelessWidget {
               icon: const Icon(Icons.check_rounded))
         ],
       ),
-      body: Column(children: [
-        TextFormField(
-          onChanged: ((value) {
-            setTitle(value);
-          }),
-          style: const TextStyle(color: Palette.mainTextColor),
-          decoration: const InputDecoration(
-            hintStyle: TextStyle(color: Palette.subTextColor),
-            hintText: '제목 없음',
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(5),
+        scrollDirection: Axis.vertical,
+        child: Column(children: [
+          TextFormField(
+            onChanged: ((value) {
+              setTitle(value);
+            }),
+            style: const TextStyle(color: Palette.mainTextColor),
+            decoration: const InputDecoration(
+              hintStyle: TextStyle(color: Palette.subTextColor),
+              hintText: '제목 없음',
+            ),
+            maxLines: 1,
           ),
-          maxLines: 1,
-        ),
-        TextFormField(
-          onChanged: ((value) {
-            setText(value);
-          }),
-          style: const TextStyle(color: Palette.mainTextColor),
-          decoration: const InputDecoration(
-            hintStyle: TextStyle(color: Palette.subTextColor),
-            hintText: '내용을 입력하세요.',
-          ),
-          keyboardType: TextInputType.multiline,
-        )
-      ]),
+          TextFormField(
+            onChanged: ((value) {
+              setText(value);
+            }),
+            style: const TextStyle(color: Palette.mainTextColor),
+            decoration: const InputDecoration(
+              hintStyle: TextStyle(color: Palette.subTextColor),
+              hintText: '내용을 입력하세요.',
+            ),
+            maxLines: 27,
+            keyboardType: TextInputType.multiline,
+          )
+        ]),
+      ),
     );
   }
 }

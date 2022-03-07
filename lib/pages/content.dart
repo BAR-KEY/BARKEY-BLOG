@@ -46,25 +46,29 @@ class Content extends StatelessWidget {
               icon: const Icon(Icons.delete))
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              title,
-              style:
-                  const TextStyle(fontSize: 30, color: Palette.mainTextColor),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style:
+                    const TextStyle(fontSize: 30, color: Palette.mainTextColor),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(
-              text,
-              style: const TextStyle(fontSize: 15, color: Palette.subTextColor),
-            ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                text,
+                style:
+                    const TextStyle(fontSize: 15, color: Palette.subTextColor),
+              ),
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},

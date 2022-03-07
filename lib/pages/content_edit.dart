@@ -49,28 +49,33 @@ class ContentEdit extends StatelessWidget {
               icon: const Icon(Icons.check_rounded))
         ],
       ),
-      body: Column(children: [
-        TextFormField(
-            onChanged: ((value) {
-              setTitle(value);
-            }),
-            style: const TextStyle(color: Palette.mainTextColor),
-            decoration: const InputDecoration(
-              hintStyle: TextStyle(color: Palette.subTextColor),
-            ),
-            maxLines: 1,
-            initialValue: title),
-        TextFormField(
-            onChanged: ((value) {
-              setText(value);
-            }),
-            style: const TextStyle(color: Palette.mainTextColor),
-            decoration: const InputDecoration(
-              hintStyle: TextStyle(color: Palette.subTextColor),
-            ),
-            keyboardType: TextInputType.multiline,
-            initialValue: text)
-      ]),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(5),
+        scrollDirection: Axis.vertical,
+        child: Column(children: [
+          TextFormField(
+              onChanged: ((value) {
+                setTitle(value);
+              }),
+              style: const TextStyle(color: Palette.mainTextColor),
+              decoration: const InputDecoration(
+                hintStyle: TextStyle(color: Palette.subTextColor),
+              ),
+              maxLines: 1,
+              initialValue: title),
+          TextFormField(
+              onChanged: ((value) {
+                setText(value);
+              }),
+              style: const TextStyle(color: Palette.mainTextColor),
+              decoration: const InputDecoration(
+                hintStyle: TextStyle(color: Palette.subTextColor),
+              ),
+              keyboardType: TextInputType.multiline,
+              maxLines: 27,
+              initialValue: text)
+        ]),
+      ),
     );
   }
 }
