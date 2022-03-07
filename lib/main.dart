@@ -246,6 +246,7 @@ class _Content extends StatelessWidget {
                   color: Palette.subTextColor,
                   fontSize: 12,
                   overflow: TextOverflow.ellipsis,
+                  height: 1.4,
                 ),
                 maxLines: 3,
               ),

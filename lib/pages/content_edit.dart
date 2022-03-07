@@ -67,7 +67,7 @@ class ContentEdit extends StatelessWidget {
               onChanged: ((value) {
                 setText(value);
               }),
-              style: const TextStyle(color: Palette.mainTextColor),
+              style: const TextStyle(color: Palette.mainTextColor, height: 1.8),
               decoration: const InputDecoration(
                 hintStyle: TextStyle(color: Palette.subTextColor),
               ),
