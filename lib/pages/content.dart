@@ -5,24 +5,46 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class Content extends StatelessWidget {
-  Content({
-    Key? key,
-    required this.title,
-    required this.text,
-    this.setTitle,
-    this.setText,
-    this.editData,
-  }) : super(key: key);
+  Content(
+      {Key? key,
+      required this.title,
+      required this.text,
+      this.setTitle,
+      this.setText,
+      this.editData,
+      this.deleteData})
+      : super(key: key);
 
   String title, text;
   // ignore: prefer_typing_uninitialized_variables
-  var editData, setTitle, setText;
+  var editData, setTitle, setText, deleteData;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("BARKEY BLOG"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.defaultDialog(
+                  title: '삭제 하시겠습니까?',
+                  content: const Text("게시물이 삭제 됩니다."),
+                  barrierDismissible: false,
+                  onCancel: () {},
+                  textCancel: '취소',
+                  onConfirm: () {
+                    deleteData();
+                  },
+                  textConfirm: '삭제',
+                  backgroundColor: Palette.mainColor,
+                  buttonColor: Palette.subColor,
+                  cancelTextColor: Palette.mainTextColor,
+                  confirmTextColor: Palette.mainTextColor,
+                );
+              },
+              icon: const Icon(Icons.delete))
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

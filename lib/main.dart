@@ -164,6 +164,14 @@ class _MyAppState extends State<MyApp> {
             });
           }
 
+          deleteData() {
+            setState(() {
+              data.removeAt(i);
+              Get.back();
+              Get.back();
+            });
+          }
+
           return GestureDetector(
             onTap: () {
               Get.to(() => Content(
@@ -172,29 +180,8 @@ class _MyAppState extends State<MyApp> {
                     setTitle: setTitle,
                     setText: setText,
                     editData: editData,
+                    deleteData: deleteData,
                   ));
-            },
-            onLongPress: () {
-              Get.defaultDialog(
-                title: '삭제 하시겠습니까?',
-                content: const Text("게시물이 삭제 됩니다."),
-                barrierDismissible: false,
-                onCancel: () {
-                  Get.back();
-                },
-                textCancel: '취소',
-                onConfirm: () {
-                  setState(() {
-                    data.removeAt(i);
-                    Get.back();
-                  });
-                },
-                textConfirm: '삭제',
-                backgroundColor: Palette.mainColor,
-                buttonColor: Palette.subColor,
-                cancelTextColor: Palette.mainTextColor,
-                confirmTextColor: Palette.mainTextColor,
-              );
             },
             child: _Content(
               title: data[i]['title'] ?? '제목 없음',
