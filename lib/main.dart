@@ -257,3 +257,5 @@ class _Content extends StatelessWidget {
     );
   }
 }
+
+//title이 유동적으로 바뀌지않는 오류발견
